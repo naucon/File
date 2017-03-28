@@ -281,7 +281,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     {
         // require to that phpunit is executed in vendor/naucon directory
 
-        $fileObject = new File('File/tests/example.txt');
+        $fileObject = new File('tests/example.txt');
         $this->assertFalse($fileObject->isAbsolute());
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getAbsolutePath()));
 
@@ -289,26 +289,19 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($fileObject->isAbsolute());
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getAbsolutePath()));
 
-        $fileObject = new File('File/../File/tests/example.txt');
-        $this->assertFalse($fileObject->isAbsolute());
-        $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getAbsolutePath()));
-
-        $fileObject = new File('File/../File/tests/');
+        $fileObject = new File('tests/');
         $this->assertFalse($fileObject->isAbsolute());
         $this->assertEquals(strtolower(__DIR__), strtolower($fileObject->getAbsolutePath()));
 
 
 
-        $fileObject = new \SplFileInfo('File/tests/example.txt');
+        $fileObject = new \SplFileInfo('tests/example.txt');
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
 
         $fileObject = new \SplFileInfo(__DIR__ . '/example.txt');
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
 
-        $fileObject = new \SplFileInfo('File/../File/tests/example.txt');
-        $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
-
-        $fileObject = new \SplFileInfo('File/../File/tests/');
+        $fileObject = new \SplFileInfo('tests/');
         $this->assertEquals(strtolower(__DIR__), strtolower($fileObject->getRealPath()));
     }
 
@@ -319,30 +312,24 @@ class FileTest extends \PHPUnit_Framework_TestCase
     {
         // require to that phpunit is executed in vendor/naucon directory
 
-        $fileObject = new File('File/tests/example.txt');
+        $fileObject = new File('tests/example.txt');
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
 
         $fileObject = new File(__DIR__ . '/example.txt');
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
 
-        $fileObject = new File('File/../File/tests/example.txt');
-        $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
-
-        $fileObject = new File('File/../File/tests/');
+        $fileObject = new File('tests/');
         $this->assertEquals(strtolower(__DIR__), strtolower($fileObject->getRealPath()));
 
 
 
-        $fileObject = new \SplFileInfo('File/tests/example.txt');
+        $fileObject = new \SplFileInfo('tests/example.txt');
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
 
         $fileObject = new \SplFileInfo(__DIR__ . '/example.txt');
         $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
 
-        $fileObject = new \SplFileInfo('File/../File/tests/example.txt');
-        $this->assertEquals(strtolower(__DIR__) . '/example.txt', strtolower($fileObject->getRealPath()));
-
-        $fileObject = new \SplFileInfo('File/../File/tests/');
+        $fileObject = new \SplFileInfo('tests/');
         $this->assertEquals(strtolower(__DIR__), strtolower($fileObject->getRealPath()));
     }
 
@@ -351,7 +338,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function testParent()
     {
-        $fileObject = new File('File/tests/example.txt');
+        $fileObject = new File('tests/example.txt');
         $parentFileObject = $fileObject->getParent();
         $this->assertInstanceOf('Naucon\File\FileInterface', $parentFileObject);
         $this->assertEquals(strtolower(__DIR__), strtolower($parentFileObject->getAbsolutePath()));
@@ -361,21 +348,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Naucon\File\FileInterface', $parentFileObject);
         $this->assertEquals(strtolower(__DIR__), strtolower($parentFileObject->getAbsolutePath()));
 
-        $fileObject = new File('File/../File/tests/example.txt');
-        $parentFileObject = $fileObject->getParent();
-        $this->assertInstanceOf('Naucon\File\FileInterface', $parentFileObject);
-        $this->assertEquals(strtolower(__DIR__), strtolower($parentFileObject->getAbsolutePath()));
-
         $fileObject = new File('example.txt');
         $parentFileObject = $fileObject->getParent();
         $this->assertEquals('.', $parentFileObject->getPathname());
 
-        $fileObject = new File('File/../File/tests/');
-        $parentFileObject = $fileObject->getParent();
-        $this->assertInstanceOf('Naucon\File\FileInterface', $parentFileObject);
-        $this->assertEquals(strtolower(realpath(__DIR__.'/../')), strtolower($parentFileObject->getAbsolutePath()));
-
-        $fileObject = new File('File/../File/tests/');
+        $fileObject = new File('tests/');
         $parentFileObject = $fileObject->getParent();
         $this->assertInstanceOf('Naucon\File\FileInterface', $parentFileObject);
         $this->assertEquals(strtolower(realpath(__DIR__.'/../')), strtolower($parentFileObject->getAbsolutePath()));
