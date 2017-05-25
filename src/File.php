@@ -9,10 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\FileAbstract;
-use Naucon\File\FileReader;
-use Naucon\File\FileWriter;
-
 /**
  * File Class
  *

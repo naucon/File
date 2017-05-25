@@ -9,8 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\LockInterface;
-use Naucon\File\LockManager;
 use Naucon\File\Exception\LockException;
 
 /**
@@ -34,20 +32,12 @@ class Lock implements LockInterface
     /**
      * Constructor
      *
-     * @param       string                  lock id
+     * @param       string      $lockId     lock id
      */
     public function __construct($lockId)
     {
         $this->setLockId($lockId);
     }
-
-    /**
-     * Destructor
-     */
-    public function __destruct()
-    {
-    }
-
 
 
     /**
@@ -60,8 +50,9 @@ class Lock implements LockInterface
 
     /**
      * @access      protected
-     * @param       string                  lock id
+     * @param       string      $lockId     lock id
      * @return      void
+     * @throws      LockException
      */
     protected function setLockId($lockId)
     {

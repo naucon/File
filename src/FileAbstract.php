@@ -9,10 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\File;
-use Naucon\File\FileInterface;
-use Naucon\File\FileInfoInterface;
-use Naucon\File\FileFilterType;
 use Naucon\File\Exception\FileException;
 
 /**
@@ -40,7 +36,8 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * Constructor
      *
-     * @param       string                  relative or absolut pathname
+     * @param       string      $pathname       relative or absolut pathname
+     * @throws      FileException
      */
     public function __construct($pathname)
     {
@@ -190,11 +187,12 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * touch set access and modification time to file
      *
-     * @param       int         optional unix timestamp of modification time, default is current time
-     * @param       int         optional unix timestamp of access time. default is the modification time
+     * @param       int     $modificationTime       optional unix timestamp of modification time, default is current time
+     * @param       int     $accessTime             optional unix timestamp of access time. default is the modification time
      * @return      bool
+     * @throws      FileException
      */
-    public function touch($modificationTime=null, $accessTime=null)
+    public function touch($modificationTime = null, $accessTime = null)
     {
         if ($this->isFile()) {
             if (is_null($modificationTime)) {
@@ -214,10 +212,11 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * create a empty file, named by the pathname
      *
-     * @param       int                 optional file permission
-     * @param       bool                return true if the file was successfully created
+     * @param       int     $mode       optional file permission
+     * @return      bool                returns true if the file was successfully created
+     * @throws      FileException
      */
-    public function createNewFile($mode=null)
+    public function createNewFile($mode = null)
     {
         if ($this->isAbsolute()) {
             if (is_null($mode)) {
@@ -238,10 +237,11 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * create a directory (but not the parent directories)
      *
-     * @param       int                 optional file permission
+     * @param       int     $mode       optional file permission
      * @return      bool
+     * @throws      FileException
      */
-    public function mkdir($mode=null)
+    public function mkdir($mode = null)
     {
         if ($this->isAbsolute()) {
             if (is_null($mode)) {
@@ -261,9 +261,11 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * create a directory recursive (with parent directories)
      *
+     * @param       int     $mode       optional file permission
      * @return      bool
+     * @throws      FileException
      */
-    public function mkdirs($mode=null)
+    public function mkdirs($mode = null)
     {
         if ($this->isAbsolute()) {
             if (is_null($mode)) {
@@ -284,6 +286,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      * delete the file or empty directory of the current file path
      *
      * @return      bool            true if file or directory was deleted, false if file or directory was not found
+     * @throws      FileException
      */
     public function delete()
     {
@@ -305,6 +308,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      * delete the file or directory with its content of the current file path
      *
      * @return      bool            true if file or directory was deleted, false if file or directory was not found
+     * @throws      FileException
      */
     public function deleteAll()
     {
@@ -324,11 +328,11 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
 
     /**
      * @access      protected
-     * @param       string          pathname
-     * @param       bool            delete files recursive
+     * @param       string      $pathname          pathname
+     * @param       bool        $recursive         delete files recursive
      * @return      bool
      */
-    protected function deleteAction($pathname, $recursive=false)
+    protected function deleteAction($pathname, $recursive = false)
     {
         if ($recursive) {
             $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($pathname, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST);
@@ -357,6 +361,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      * delete files of the current directory
      *
      * @return      bool            true if files were deleted
+     * @throws      FileException
      */
     public function deleteFiles()
     {
@@ -367,7 +372,6 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
             } else {
                 throw new FileException('Given path is a file and not a directory.');
             }
-            return false;
         } else {
             throw new FileException('Given file path is not a absolute path.');
         }
@@ -377,6 +381,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      * delete files of the current directory recursive
      *
      * @return      bool            true if files were deleted
+     * @throws      FileException
      */
     public function deleteAllFiles()
     {
@@ -387,7 +392,6 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
             } else {
                 throw new FileException('Given path is a file and not a directory.');
             }
-            return false;
         } else {
             throw new FileException('Given file path is not a absolute path.');
         }
@@ -395,11 +399,11 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
 
     /**
      * @access      protected
-     * @param       string          pathname
-     * @param       bool            delete files recursive
+     * @param       string      $pathname       pathname
+     * @param       bool        $recursive      delete files recursive
      * @return      bool
      */
-    public function deleteFilesAction($pathname, $recursive=false)
+    public function deleteFilesAction($pathname, $recursive = false)
     {
         if ($recursive) {
             $files = new FileFilterType(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($pathname, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST),FileFilterType::TYPE_FILE);
@@ -418,8 +422,9 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * rename file
      *
-     * @param       string                  directory or file name with extension
+     * @param       string      $pathname           directory or file name with extension
      * @return      bool
+     * @throws      FileException
      */
     public function rename($pathname)
     {
@@ -442,8 +447,9 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * move file to a given directory
      *
-     * @param       FileInterface|string
+     * @param       FileInterface|string        $pathname
      * @return      bool
+     * @throws      FileException
      */
     public function move($pathname)
     {
@@ -476,8 +482,9 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * copy file to a given directory
      *
-     * @param       FileInterface|string
+     * @param       FileInterface|string        $pathname
      * @return      bool
+     * @throws      FileException
      */
     public function copy($pathname)
     {
@@ -514,12 +521,12 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
 
     /**
      * @access      protected
-     * @param       string          source file path
-     * @param       string          target file path
-     * @param       bool            copy files recursive
+     * @param       string      $sourcePathname     source file path
+     * @param       string      $targetPathname     target file path
+     * @param       bool        $recursive          copy files recursive
      * @return      bool
      */
-    protected function copyAction($sourcePathname, $targetPathname, $recursive=false)
+    protected function copyAction($sourcePathname, $targetPathname, $recursive = false)
     {
         if (!empty($sourcePathname) && !empty($targetPathname)) {
             if (is_file($sourcePathname)) {
@@ -588,8 +595,9 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     }
 
     /**
-     * @param       mixed       user group name or id
+     * @param       mixed       $userGroup      user group name or id
      * @return      bool
+     * @throws      FileException
      */
     public function chgrp($userGroup)
     {
@@ -608,8 +616,9 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * change owner
      *
-     * @param       mixed       user name or id
+     * @param       mixed       $user       user name or id
      * @return      bool
+     * @throws      FileException
      */
     public function chown($user)
     {
@@ -628,8 +637,9 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * change permission
      *
-     * @param       int         file permission, default permission is 0777
+     * @param       int     $fileMode       file permission, default permission is 0777
      * @return      bool
+     * @throws      FileException
      */
     public function chmod($fileMode)
     {
@@ -718,7 +728,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
             }
             // try the Windows COM interface if its fails
             if (class_exists('COM') && $size > -1) {
-                $fsobj = new COM('Scripting.FileSystemObject');
+                $fsobj = new \COM('Scripting.FileSystemObject');
                 $file = $fsobj->GetFile($filePath);
                 $result = $file->Size;
                 if (ctype_digit($result)) {

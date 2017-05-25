@@ -10,7 +10,6 @@
 namespace Naucon\File\Tests;
 
 use Naucon\File\FileWriter;
-use Naucon\File\Exception\FileWriterException;
 
 class FileWriterTest extends \PHPUnit_Framework_TestCase
 {
@@ -54,7 +53,7 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testWrite
-     * @param       $fileObject1
+     * @param       FileWriter      $fileObject1
      * @return      void
      */
     public function testIterate($fileObject1)

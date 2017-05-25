@@ -28,10 +28,10 @@ interface FileReaderInterface extends \Iterator
     /**
      * return a specified line of the file
      *
-     * @param       int             line number
+     * @param       int         $line           line number
      * @return      string|array    file line, or false is line do not exist
      */
-    public function readLine($line=0);
+    public function readLine($line = 0);
 
     /**
      * return an array with all lines of a file

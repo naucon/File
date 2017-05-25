@@ -9,8 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\LockInterface;
-use Naucon\File\LockHandlerInterface;
 use Naucon\File\Exception\LockManagerException;
 
 /**
@@ -42,7 +40,7 @@ class LockManager
      * Constructor
      *
      * @access      private
-     * @param       LockHandlerInterface    lock handler object
+     * @param       LockHandlerInterface        $lockHandler
      */
     private function __construct(LockHandlerInterface $lockHandler)
     {
@@ -81,10 +79,10 @@ class LockManager
      * singleton
      *
      * @static
-     * @param       LockHandlerInterface        lock handler object
+     * @param       LockHandlerInterface        $lockHandler
      * @return      LockManager
      */
-    static public function init(LockHandler $lockHandler)
+    static public function init(LockHandlerInterface $lockHandler)
     {
         if (is_null(self::$singletonObject)) {
             self::$singletonObject = new self($lockHandler);
@@ -94,8 +92,9 @@ class LockManager
 
     /**
      * @static
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject
      * @return      bool
+     * @throws      LockManagerException
      */
     static public function isLocked(LockInterface $lockObject)
     {
@@ -108,8 +107,9 @@ class LockManager
 
     /**
      * @static
-     * @param       LockInterface               lock object
+     * @param       LockInterface       $lockObject
      * @return      bool
+     * @throws      LockManagerException
      */
     static public function lock(LockInterface $lockObject)
     {
@@ -122,8 +122,9 @@ class LockManager
 
     /**
      * @static
-     * @param       LockInterface               lock object
+     * @param       LockInterface       $lockObject
      * @return      bool
+     * @throws      LockManagerException
      */
     static public function unlock(LockInterface $lockObject)
     {

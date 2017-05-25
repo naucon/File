@@ -10,8 +10,6 @@
 namespace Naucon\File;
 
 use Naucon\File\Exception\FileWriterException;
-use Naucon\File\FileReaderAbstract;
-use Naucon\File\FileWriterInterface;
 
 /**
  * File Writer Class
@@ -24,9 +22,9 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
     /**
      * Constructor
      *
-     * @param       string|SplFileInfo|SplFileObject    pathname
-     * @param       string                  file mode
-     * @param       bool                    true = skip empty lines, false = contains empty lines
+     * @param       string|\SplFileInfo|\SplFileObject      $pathname       pathname
+     * @param       string      $mode               file mode
+     * @param       bool        $skipEmptyLines     true = skip empty lines, false = contains empty lines
      *
      * file mode
      * r     = read only, beginning of file
@@ -58,7 +56,7 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
      * | x+ | x  |  x  |  x  |   | only |
      * +----+----+-----+-----+---+------+
      */
-    public function __construct($pathname, $mode='r+', $skipEmptyLines=false)
+    public function __construct($pathname, $mode = 'r+', $skipEmptyLines = false)
     {
         parent::__construct($pathname);
 
@@ -68,8 +66,9 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
     /**
      * write string to file
      *
-     * @param       string                  file content
+     * @param       string      $string     file content
      * @return      FileWriterInterface
+     * @throws      FileWriterException
      */
     public function write($string)
     {
@@ -83,8 +82,9 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
     /**
      * add string to file
      *
-     * @param       string                  file content
+     * @param       string      $string     file content
      * @return      FileWriterInterface
+     * @throws      FileWriterException
      */
     public function writeLine($string)
     {
@@ -109,7 +109,7 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
     /**
      * truncates file to a given length (in bytes)
      *
-     * @param       int                     length in bytes
+     * @param       int         $bytes      length in bytes
      * @return      bool                    true = when successful
      */
     public function truncates($bytes)

@@ -30,11 +30,11 @@ interface FileInfoInterface
     /**
      * return a basename with extension
      *
-     * @param       string                  optional suffix
+     * @param       string      $suffix         optional suffix
      * @return      string
      * @see         \SplFileInfo::getBasename()
      */
-    public function getBasename($suffix=null);
+    public function getBasename($suffix = null);
 
     /**
      * return filename with extension
@@ -47,11 +47,11 @@ interface FileInfoInterface
     /**
      * return file info object for filename with extension
      *
-     * @param       string                      class name
+     * @param       string      $class_name     class name
      * @return      string
      * @see         \SplFileInfo::getFileInfo()
      */
-    public function getFileInfo($class_name=null);
+    public function getFileInfo($class_name = null);
 
     /**
      * return inode number of the file or directory
@@ -88,11 +88,11 @@ interface FileInfoInterface
     /**
      * return file info object for path without basename
      *
-     * @param       string                      class name
+     * @param       string      $class_name     class name
      * @return      \SplFileInfo
      * @see         \SplFileInfo::getPathInfo()
      */
-    public function getPathInfo($class_name=null);
+    public function getPathInfo($class_name = null);
 
     /**
      * return absolute file path
@@ -226,10 +226,10 @@ interface FileInfoInterface
     /**
      * return a instance of SplFileObject to open and modify a file
      *
-     * @param       string                      mode to open a file
-     * @param       bool                        true = to search file within include path
-     * @param       resource                    context
-     * @return      \SplFileObject              instance of SplFileObject
+     * @param       string      $open_mode              mode to open a file
+     * @param       bool        $use_include_path       true = to search file within include path
+     * @param       resource    $context                context
+     * @return      \SplFileObject                      instance of SplFileObject
      * @see         \SplFileInfo::openFile()
      *
      * file mode
@@ -262,12 +262,12 @@ interface FileInfoInterface
      * | x+ | x  |  x  |  x  |   | only |
      * +----+----+-----+-----+---+------+
      */
-    public function openFile($open_mode='r', $use_include_path=false, $context=null);
+    public function openFile($open_mode = 'r', $use_include_path = false, $context = null);
 
     /**
      * sets the class which is return when calling SplFileInfo::openFile()
      *
-     * @param       string                      class name
+     * @param       string      $class_name         class name
      * @return      void
      * @see         \SplFileInfo::setFileClass()
      */
@@ -276,7 +276,7 @@ interface FileInfoInterface
     /**
      * sets the class which is return when calling SplFileInfo::getFileInfo() or SplFileInfo::getPathInfo()
      *
-     * @param       string                      class name
+     * @param       string      $class_name         class name
      * @return      void
      * @see         \SplFileInfo::setInfoClass()
      */

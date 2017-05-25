@@ -9,8 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\FileReaderAbstract;
-
 /**
  * File Reader Class
  *
@@ -22,9 +20,9 @@ class FileReader extends FileReaderAbstract
     /**
      * Constructor
      *
-     * @param       string|SplFileInfo|SplFileObject    pathname
-     * @param       string                  file mode
-     * @param       bool                    true = skip empty lines, false = contains empty lines
+     * @param       string|\SplFileInfo|\SplFileObject      $pathname       pathname
+     * @param       string      $mode               file mode
+     * @param       bool        $skipEmptyLines     true = skip empty lines, false = contains empty lines
      *
      * file mode
      * r     = read only, beginning of file
@@ -56,7 +54,7 @@ class FileReader extends FileReaderAbstract
      * | x+ | x  |  x  |  x  |   | only |
      * +----+----+-----+-----+---+------+
      */
-    public function __construct($pathname, $mode='r', $skipEmptyLines=false)
+    public function __construct($pathname, $mode = 'r', $skipEmptyLines = false)
     {
         parent::__construct($pathname);
 

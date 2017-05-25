@@ -9,7 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\FileFilterInterface;
 use Naucon\File\Exception\FileFilterException;
 
 /**
@@ -39,8 +38,9 @@ class FileFilterType extends \FilterIterator implements FileFilterInterface
     /**
      * Constructor
      *
-     * @param       \Iterator               iterator
-     * @param       string                  file type
+     * @param       \Iterator       $iterator
+     * @param       string          $type           file type
+     * @throws      FileFilterException
      */
     public function __construct(\Iterator $iterator, $type)
     {

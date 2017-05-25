@@ -15,7 +15,6 @@ use Naucon\File\LockHandler;
 use Naucon\File\LockManager;
 use Naucon\File\Exception\LockException;
 use Naucon\File\Exception\LockHandlerException;
-use Naucon\File\Exception\LockManagerException;
 
 class LockTest extends \PHPUnit_Framework_TestCase
 {
@@ -49,12 +48,12 @@ class LockTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @expectedException Naucon\File\Exception\LockException
+     * @expectedException \Naucon\File\Exception\LockException
      * @return      LockInterface
      */
     public function testInvalidLockId()
     {
-        $lockObject = new Lock(' ');
+        new Lock(' ');
     }
 
     /**
@@ -75,7 +74,7 @@ class LockTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testLock
-     * @param       LockInterface           lock object
+     * @param       LockInterface       $lockObject
      * @return      void
      */
     public function testUnlock(LockInterface $lockObject)
@@ -86,7 +85,7 @@ class LockTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testUnlock
-     * @expectedException Naucon\File\Exception\LockHandlerException
+     * @expectedException \Naucon\File\Exception\LockHandlerException
      * @return      void
      */
     public function testAlreadyLocked()

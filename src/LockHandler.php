@@ -9,9 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\File;
-use Naucon\File\LockInterface;
-use Naucon\File\LockHandlerInterface;
 use Naucon\File\Exception\LockHandlerException;
 
 /**
@@ -34,7 +31,7 @@ class LockHandler implements LockHandlerInterface
     /**
      * Constructor
      *
-     * @param       \SplFileInfo|string             pathname
+     * @param       \SplFileInfo|string     $pathname       pathname
      */
     public function __construct($pathname)
     {
@@ -62,7 +59,7 @@ class LockHandler implements LockHandlerInterface
 
     /**
      * @access      protected
-     * @param       \SplFileInfo|string             pathname
+     * @param       \SplFileInfo|string     $pathname       pathname
      * @return      void
      */
     protected function setFileInfo($pathname)
@@ -76,7 +73,7 @@ class LockHandler implements LockHandlerInterface
 
     /**
      * @access      protected
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      File
      */
     protected function getLockFile(LockInterface $lockObject)
@@ -86,7 +83,7 @@ class LockHandler implements LockHandlerInterface
     }
 
     /**
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      bool
      */
     public function isLocked(LockInterface $lockObject)
@@ -99,8 +96,9 @@ class LockHandler implements LockHandlerInterface
     }
 
     /**
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      bool
+     * @throws      LockHandlerException
      */
     public function lock(LockInterface $lockObject)
     {
@@ -112,11 +110,10 @@ class LockHandler implements LockHandlerInterface
             // alarm
             throw new LockHandlerException('Lock ID ' . $lockObject->getLockId() . ' already locked.');
         }
-        return false;
     }
 
     /**
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      bool
      */
     public function unlock(LockInterface $lockObject)

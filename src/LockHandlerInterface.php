@@ -19,19 +19,19 @@ namespace Naucon\File;
 interface LockHandlerInterface
 {
     /**
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      bool
      */
     public function isLocked(LockInterface $lockObject);
 
     /**
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      bool
      */
     public function lock(LockInterface $lockObject);
 
     /**
-     * @param       LockInterface                    lock object
+     * @param       LockInterface       $lockObject         lock object
      * @return      bool
      */
     public function unlock(LockInterface $lockObject);

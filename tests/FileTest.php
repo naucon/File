@@ -10,8 +10,6 @@
 namespace Naucon\File\Tests;
 
 use Naucon\File\File;
-use Naucon\File\FileInterface;
-use Naucon\File\Exception\FileException;
 
 class FileTest extends \PHPUnit_Framework_TestCase
 {
@@ -45,7 +43,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Naucon\File\Exception\FileException
+     * @expectedException \Naucon\File\Exception\FileException
      * @return    void
      */
     public function testEmptyInit()

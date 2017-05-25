@@ -9,9 +9,6 @@
  */
 namespace Naucon\File;
 
-use Naucon\File\FileAbstract;
-use Naucon\File\FileReaderInterface;
-
 /**
  * Abstract File Reader Class
  *
@@ -57,8 +54,8 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
 
     /**
      * @access      protected
-     * @param       string                              file mode
-     * @param       bool                                true = skip empty lines, false = contains empty lines
+     * @param       string      $mode               file mode
+     * @param       bool        $skipEmptyLines     true = skip empty lines, false = contains empty lines
      * @return      void
      *
      * file mode
@@ -140,10 +137,10 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
     /**
      * return a specified line of the file
      *
-     * @param       int             line number
-     * @return      string|array    file line, or false is line do not exist
+     * @param       int     $line       line number
+     * @return      string|array        file line, or false is line do not exist
      */
-    public function readLine($line=0)
+    public function readLine($line = 0)
     {
         // // seek line
         $this->getFileObject()->seek($line);

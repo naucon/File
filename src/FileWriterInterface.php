@@ -21,7 +21,7 @@ interface FileWriterInterface
     /**
      * write string to file
      *
-     * @param       string                  file content
+     * @param       string      $string     file content
      * @return      FileWriterInterface
      */
     public function write($string);
@@ -29,7 +29,7 @@ interface FileWriterInterface
     /**
      * add string to file
      *
-     * @param       string                  file content
+     * @param       string      $string     file content
      * @return      FileWriterInterface
      */
     public function writeLine($string);
@@ -44,7 +44,7 @@ interface FileWriterInterface
     /**
      * truncates file to a given length (in bytes)
      *
-     * @param       int                     length in bytes
+     * @param       int         $bytes      length in bytes
      * @return      bool                    true = when successful
      */
     public function truncates($bytes);

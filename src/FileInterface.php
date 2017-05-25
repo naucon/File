@@ -95,35 +95,35 @@ interface FileInterface
     /**
      * touch set access and modification time to file
      *
-     * @param       int         optional - unix timestamp of modification time, default is current time
-     * @param       int         optional - unix timestamp of access time. default is the modification time
+     * @param       int     $modificationTime       optional - unix timestamp of modification time, default is current time
+     * @param       int     $accessTime             optional - unix timestamp of access time. default is the modification time
      * @return      bool
      */
-    public function touch($modificationTime=null, $accessTime=null);
+    public function touch($modificationTime = null, $accessTime = null);
 
     /**
      * create a empty file, named by the pathname
      *
-     * @param       int                 optional file permission
-     * @param       bool                return true if the file was successfully created
+     * @param       int     $mode       optional file permission
+     * @return      bool                returns true if the file was successfully created
      */
-    public function createNewFile($mode=null);
+    public function createNewFile($mode = null);
 
     /**
      * create a directory (but not the parent directories)
      *
-     * @param       int                     optional - file permission
+     * @param       int     $mode       optional - file permission
      * @return      bool
      */
-    public function mkdir($mode=null);
+    public function mkdir($mode = null);
 
     /**
      * create a directory recursive (with parent directories)
      *
-     * @param       int                     optional - file permission
+     * @param       int     $mode       optional - file permission
      * @return      bool
      */
-    public function mkdirs($mode=null);
+    public function mkdirs($mode = null);
 
     /**
      * delete the file or directory of the current file path
@@ -156,7 +156,7 @@ interface FileInterface
     /**
      * rename file
      *
-     * @param       string                  file name
+     * @param       string      $filename       file name
      * @return      bool
      */
     public function rename($filename);
@@ -164,7 +164,7 @@ interface FileInterface
     /**
      * move file to a given directory
      *
-     * @param       FileInterface|string
+     * @param       FileInterface|string    $filepath
      * @return      bool
      */
     public function move($filepath);
@@ -172,7 +172,7 @@ interface FileInterface
     /**
      * copy file to a given directory
      *
-     * @param       FileInterface|string
+     * @param       FileInterface|string        $filepath
      * @return      bool
      */
     public function copy($filepath);
@@ -199,7 +199,7 @@ interface FileInterface
     public function getPermission();
 
     /**
-     * @param       mixed       user group name or id
+     * @param       mixed       $usergroup      user group name or id
      * @return      bool
      */
     public function chgrp($usergroup);
@@ -207,7 +207,7 @@ interface FileInterface
     /**
      * change owner
      *
-     * @param       mixed       user name or id
+     * @param       mixed       $user       user name or id
      * @return      bool
      */
     public function chown($user);
@@ -215,7 +215,7 @@ interface FileInterface
     /**
      * change permission
      *
-     * @param       int         file permission
+     * @param       int         $fileMode       file permission
      * @return      bool
      */
     public function chmod($fileMode);
