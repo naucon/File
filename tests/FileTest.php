@@ -13,9 +13,6 @@ use Naucon\File\File;
 
 class FileTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @return void
-     */
     public static function setUpBeforeClass()
     {
         // remove directories
@@ -35,25 +32,13 @@ class FileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return void
-     */
-    public static function tearDownAfterClass()
-    {
-
-    }
-
-    /**
      * @expectedException \Naucon\File\Exception\FileException
-     * @return    void
      */
     public function testEmptyInit()
     {
         $fileObject = new File('');
     }
 
-    /**
-     * @return    void
-     */
     public function testInit()
     {
         $fileObject = new File('example.txt');
@@ -166,9 +151,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $fileObject->getPath());                // deviation to File 'foo'
     }
 
-    /**
-     * @return    void
-     */
     public function testGetExtension()
     {
         $fileObject = new File('example.txt');
@@ -203,9 +185,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('txt', $fileObject->getExtension());
     }
 
-    /**
-     * @return    void
-     */
     public function testGetFilename()
     {
         $fileObject = new File('example.txt');
@@ -234,9 +213,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/tmp', $fileObject->getFilename());
     }
 
-    /**
-     * @return    void
-     */
     public function testGetName()
     {
         $fileObject = new File('example.txt');
@@ -272,9 +248,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('example.txt', $fileObject->getBasename('.' . $fileObject->getExtension()));
     }
 
-    /**
-     * @return    void
-     */
     public function testAbsolute()
     {
         // require to that phpunit is executed in vendor/naucon directory
@@ -303,9 +276,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(strtolower(__DIR__), strtolower($fileObject->getRealPath()));
     }
 
-    /**
-     * @return    void
-     */
     public function testGetRealPath()
     {
         // require to that phpunit is executed in vendor/naucon directory
@@ -331,9 +301,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(strtolower(__DIR__), strtolower($fileObject->getRealPath()));
     }
 
-    /**
-     * @return    void
-     */
     public function testParent()
     {
         $fileObject = new File('tests/example.txt');
@@ -356,9 +323,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(strtolower(realpath(__DIR__.'/../')), strtolower($parentFileObject->getAbsolutePath()));
     }
 
-    /**
-     * @return    void
-     */
     public function testExist()
     {
         $path =  __DIR__;
@@ -383,7 +347,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testIsExecutable()
     {
@@ -398,7 +361,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testIsReadable()
     {
@@ -413,7 +375,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testIsWritable()
     {
@@ -428,7 +389,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testIsFile()
     {
@@ -451,7 +411,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testIsDir()
     {
@@ -476,7 +435,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testIsLink()
     {
@@ -497,9 +455,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($fileObject->isLink());
     }
 
-    /**
-     * @return      void
-     */
     public function testIsHidden()
     {
         $fileObject = new File('example.txt');
@@ -513,7 +468,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testLastModified()
     {
@@ -529,7 +483,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testLastAccessed()
     {
@@ -545,7 +498,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testLastChanged()
     {
@@ -561,7 +513,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testTouch()
     {
@@ -615,7 +566,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testCreateNewFile()
     {
@@ -631,7 +581,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testMkdir()
     {
@@ -656,7 +605,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testMkdirs()
     {
@@ -680,7 +628,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testDelete()
     {
@@ -714,7 +661,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * @depends     testExist
      * @depends     testMkdir
      * @depends     testMkdirs
-     * @return      void
      */
     public function testDeleteAll()
     {
@@ -757,7 +703,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testDeleteAll
-     * @return      void
      */
     public function testDeleteFiles()
     {
@@ -801,7 +746,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testDeleteFiles
-     * @return      void
      */
     public function testDeleteAllFiles()
     {
@@ -820,7 +764,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testRename()
     {
@@ -864,7 +807,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testMove()
     {
@@ -913,7 +855,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testCopy()
     {
@@ -962,7 +903,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testOwner()
     {
@@ -978,7 +918,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testGroup()
     {
@@ -993,7 +932,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testPermission()
     {
@@ -1010,7 +948,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testChgrp()
     {
@@ -1030,7 +967,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testChown()
     {
@@ -1048,7 +984,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testChmod()
     {
@@ -1063,7 +998,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testChmodWithAllModes()
     {
@@ -1109,7 +1043,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testSize()
     {
@@ -1125,7 +1058,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testListAll()
     {
@@ -1151,7 +1083,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testExist
-     * @return      void
      */
     public function testListFiles()
     {

@@ -28,11 +28,11 @@ class Lock implements LockInterface
     protected $lockId = null;
 
 
-
     /**
      * Constructor
      *
-     * @param       string      $lockId     lock id
+     * @param       string $lockId lock id
+     * @throws LockException
      */
     public function __construct($lockId)
     {
@@ -65,6 +65,7 @@ class Lock implements LockInterface
 
     /**
      * @return      bool
+     * @throws Exception\LockManagerException
      */
     public function isLocked()
     {
@@ -73,6 +74,7 @@ class Lock implements LockInterface
 
     /**
      * @return      bool
+     * @throws Exception\LockManagerException
      */
     public function lock()
     {
@@ -81,6 +83,7 @@ class Lock implements LockInterface
 
     /**
      * @return      bool
+     * @throws Exception\LockManagerException
      */
     public function unlock()
     {

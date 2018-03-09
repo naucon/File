@@ -14,9 +14,6 @@ use Naucon\File\Exception\FileReaderException;
 
 class FileReaderTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @return      void
-     */
     public function testInit()
     {
         $filePath = __DIR__ . '/example_read.txt';
@@ -31,7 +28,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testIterate()
     {
@@ -63,7 +59,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testNextLine()
     {
@@ -88,7 +83,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testIsFirst()
     {
@@ -104,7 +98,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testReadLine()
     {
@@ -121,7 +114,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testReadInvalidLine()
     {
@@ -138,7 +130,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testIsLast()
     {
@@ -165,7 +156,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testRead()
     {
@@ -185,7 +175,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @depends     testInit
-     * @return      void
      */
     public function testReadLines()
     {

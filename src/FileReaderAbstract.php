@@ -53,11 +53,6 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
     }
 
     /**
-     * @access      protected
-     * @param       string      $mode               file mode
-     * @param       bool        $skipEmptyLines     true = skip empty lines, false = contains empty lines
-     * @return      void
-     *
      * file mode
      * r     = read only, beginning of file
      * r+    = read and write, beginning of file
@@ -87,6 +82,10 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
      * +----+----+-----+-----+---+------+
      * | x+ | x  |  x  |  x  |   | only |
      * +----+----+-----+-----+---+------+
+     *
+     * @param       string $mode file mode
+     * @param       bool $skipEmptyLines true = skip empty lines, false = contains empty lines
+     * @throws Exception\FileException
      */
     protected function openFileObject($mode, $skipEmptyLines)
     {
@@ -246,8 +245,6 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
 
     /**
      * set point to next line
-     *
-     * @return      void
      */
     public function next()
     {
@@ -276,8 +273,6 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
 
     /**
      * rewind to the first line
-     *
-     * @return      void
      */
     public function rewind()
     {

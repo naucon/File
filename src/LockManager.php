@@ -59,7 +59,6 @@ class LockManager
      * Clone
      *
      * @access      private
-     * @return      void
      */
     private function __clone()
     {

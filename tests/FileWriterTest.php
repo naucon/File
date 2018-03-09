@@ -13,9 +13,6 @@ use Naucon\File\FileWriter;
 
 class FileWriterTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @return      void
-     */
     public function testInit()
     {
         $filePath = __DIR__ . '/example_write1.txt';
@@ -30,7 +27,8 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return      array
+     * @return      FileWriter
+     * @throws \Naucon\File\Exception\FileWriterException
      */
     public function testWrite()
     {
@@ -54,7 +52,6 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends     testWrite
      * @param       FileWriter      $fileObject1
-     * @return      void
      */
     public function testIterate($fileObject1)
     {
@@ -71,9 +68,6 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, $i);
     }
 
-    /**
-     * @return      void
-     */
     public function testWriteLine()
     {
         $filePath = __DIR__ . '/example_write1.txt';
@@ -89,9 +83,6 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
         $fileObject->fwrite("bar" . PHP_EOL);
     }
 
-    /**
-     * @return      void
-     */
     public function testTruncates()
     {
         $filePath = __DIR__ . '/example_write1.txt';
@@ -103,9 +94,6 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
         $fileObject->ftruncate(13);
     }
 
-    /**
-     * @return      void
-     */
     public function testClear()
     {
         $filePath = __DIR__ . '/example_write1.txt';

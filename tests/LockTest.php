@@ -18,9 +18,6 @@ use Naucon\File\Exception\LockHandlerException;
 
 class LockTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @return void
-     */
     public static function setUpBeforeClass()
     {
         $lockfile = __DIR__ . '/lock/~foo.lock';
@@ -29,17 +26,11 @@ class LockTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public static function tearDownAfterClass()
     {
 
     }
 
-    /**
-     * @return    void
-     */
     public function testInit()
     {
         $lockPath = __DIR__ . '/lock/';
@@ -49,7 +40,6 @@ class LockTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends     testInit
      * @expectedException \Naucon\File\Exception\LockException
-     * @return      LockInterface
      */
     public function testInvalidLockId()
     {
@@ -75,7 +65,6 @@ class LockTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends     testLock
      * @param       LockInterface       $lockObject
-     * @return      void
      */
     public function testUnlock(LockInterface $lockObject)
     {
@@ -86,7 +75,6 @@ class LockTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends     testUnlock
      * @expectedException \Naucon\File\Exception\LockHandlerException
-     * @return      void
      */
     public function testAlreadyLocked()
     {

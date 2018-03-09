@@ -20,10 +20,6 @@ class FileReader extends FileReaderAbstract
     /**
      * Constructor
      *
-     * @param       string|\SplFileInfo|\SplFileObject      $pathname       pathname
-     * @param       string      $mode               file mode
-     * @param       bool        $skipEmptyLines     true = skip empty lines, false = contains empty lines
-     *
      * file mode
      * r     = read only, beginning of file
      * r+    = read and write, beginning of file
@@ -53,6 +49,11 @@ class FileReader extends FileReaderAbstract
      * +----+----+-----+-----+---+------+
      * | x+ | x  |  x  |  x  |   | only |
      * +----+----+-----+-----+---+------+
+     *
+     * @param       string|\SplFileInfo|\SplFileObject $pathname pathname
+     * @param       string $mode file mode
+     * @param       bool $skipEmptyLines true = skip empty lines, false = contains empty lines
+     * @throws Exception\FileException
      */
     public function __construct($pathname, $mode = 'r', $skipEmptyLines = false)
     {

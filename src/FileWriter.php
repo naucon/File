@@ -22,10 +22,6 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
     /**
      * Constructor
      *
-     * @param       string|\SplFileInfo|\SplFileObject      $pathname       pathname
-     * @param       string      $mode               file mode
-     * @param       bool        $skipEmptyLines     true = skip empty lines, false = contains empty lines
-     *
      * file mode
      * r     = read only, beginning of file
      * r+    = read and write, beginning of file
@@ -55,6 +51,11 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
      * +----+----+-----+-----+---+------+
      * | x+ | x  |  x  |  x  |   | only |
      * +----+----+-----+-----+---+------+
+     *
+     * @param       string|\SplFileInfo|\SplFileObject $pathname pathname
+     * @param       string $mode file mode
+     * @param       bool $skipEmptyLines true = skip empty lines, false = contains empty lines
+     * @throws Exception\FileException
      */
     public function __construct($pathname, $mode = 'r+', $skipEmptyLines = false)
     {
@@ -98,8 +99,6 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
 
     /**
      * clear file
-     *
-     * @return      bool                    true = when successful
      */
     public function clear()
     {
@@ -110,7 +109,6 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
      * truncates file to a given length (in bytes)
      *
      * @param       int         $bytes      length in bytes
-     * @return      bool                    true = when successful
      */
     public function truncates($bytes)
     {

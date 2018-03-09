@@ -73,8 +73,6 @@ interface FileReaderInterface extends \Iterator
 
     /**
      * set first line as current line
-     *
-     * @return      void
      */
     public function first();
 }

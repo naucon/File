@@ -36,8 +36,6 @@ interface FileWriterInterface
 
     /**
      * clear file
-     *
-     * @return      bool                    true = when successful
      */
     public function clear();
 
@@ -45,7 +43,6 @@ interface FileWriterInterface
      * truncates file to a given length (in bytes)
      *
      * @param       int         $bytes      length in bytes
-     * @return      bool                    true = when successful
      */
     public function truncates($bytes);
 }

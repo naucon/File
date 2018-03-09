@@ -115,7 +115,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * return a instance of FileInterface of the parent directory or null
      *
-     * @return      File
+     * @return      FileInterface|\SplFileInfo
      */
     public function getParent()
     {
@@ -378,6 +378,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      *
      * @return      bool            true if files were deleted
      * @throws      FileException
+     * @throws Exception\FileFilterException
      */
     public function deleteFiles()
     {
@@ -398,6 +399,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      *
      * @return      bool            true if files were deleted
      * @throws      FileException
+     * @throws Exception\FileFilterException
      */
     public function deleteAllFiles()
     {
@@ -415,9 +417,10 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
 
     /**
      * @access      protected
-     * @param       string      $pathname       pathname
-     * @param       bool        $recursive      delete files recursive
+     * @param       string $pathname pathname
+     * @param       bool $recursive delete files recursive
      * @return      bool
+     * @throws Exception\FileFilterException
      */
     public function deleteFilesAction($pathname, $recursive = false)
     {
@@ -779,6 +782,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
      * returns files
      *
      * @return      \Iterator
+     * @throws Exception\FileFilterException
      */
     public function listFiles()
     {

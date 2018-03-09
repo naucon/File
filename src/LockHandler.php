@@ -73,8 +73,9 @@ class LockHandler implements LockHandlerInterface
 
     /**
      * @access      protected
-     * @param       LockInterface       $lockObject         lock object
+     * @param       LockInterface $lockObject lock object
      * @return      File
+     * @throws Exception\FileException
      */
     protected function getLockFile(LockInterface $lockObject)
     {
@@ -83,8 +84,9 @@ class LockHandler implements LockHandlerInterface
     }
 
     /**
-     * @param       LockInterface       $lockObject         lock object
+     * @param       LockInterface $lockObject lock object
      * @return      bool
+     * @throws Exception\FileException
      */
     public function isLocked(LockInterface $lockObject)
     {
@@ -96,9 +98,10 @@ class LockHandler implements LockHandlerInterface
     }
 
     /**
-     * @param       LockInterface       $lockObject         lock object
+     * @param       LockInterface $lockObject lock object
      * @return      bool
      * @throws      LockHandlerException
+     * @throws Exception\FileException
      */
     public function lock(LockInterface $lockObject)
     {
@@ -113,8 +116,9 @@ class LockHandler implements LockHandlerInterface
     }
 
     /**
-     * @param       LockInterface       $lockObject         lock object
+     * @param       LockInterface $lockObject lock object
      * @return      bool
+     * @throws Exception\FileException
      */
     public function unlock(LockInterface $lockObject)
     {
