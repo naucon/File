@@ -89,7 +89,7 @@ interface FileInfoInterface
      * return file info object for path without basename
      *
      * @param       string      $class_name     class name
-     * @return      \SplFileInfo
+     * @return      FileInterface|\SplFileInfo
      * @see         \SplFileInfo::getPathInfo()
      */
     public function getPathInfo($class_name = null);
@@ -268,7 +268,6 @@ interface FileInfoInterface
      * sets the class which is return when calling SplFileInfo::openFile()
      *
      * @param       string      $class_name         class name
-     * @return      void
      * @see         \SplFileInfo::setFileClass()
      */
     public function setFileClass($class_name);
@@ -277,7 +276,6 @@ interface FileInfoInterface
      * sets the class which is return when calling SplFileInfo::getFileInfo() or SplFileInfo::getPathInfo()
      *
      * @param       string      $class_name         class name
-     * @return      void
      * @see         \SplFileInfo::setInfoClass()
      */
     public function setInfoClass($class_name);

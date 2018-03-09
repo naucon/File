@@ -73,7 +73,7 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
      */
     public function write($string)
     {
-        if(is_null($this->getFileObject()->fwrite($string))) {
+        if ($this->getFileObject()->fwrite($string) === false) {
             // return written bytes or null on error
             throw new FileWriterException('write to file failed.');
         }
@@ -90,7 +90,7 @@ class FileWriter extends FileReaderAbstract implements FileWriterInterface
     public function writeLine($string)
     {
         $string = rtrim($string, "\n\r") . PHP_EOL;
-        if(is_null($this->getFileObject()->fwrite($string))) {
+        if ($this->getFileObject()->fwrite($string) === false) {
             // return written bytes or null on error
             throw new FileWriterException('write line to file failed.');
         }

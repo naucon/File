@@ -51,7 +51,6 @@ class Lock implements LockInterface
     /**
      * @access      protected
      * @param       string      $lockId     lock id
-     * @return      void
      * @throws      LockException
      */
     protected function setLockId($lockId)

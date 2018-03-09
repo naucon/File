@@ -60,7 +60,6 @@ class LockHandler implements LockHandlerInterface
     /**
      * @access      protected
      * @param       \SplFileInfo|string     $pathname       pathname
-     * @return      void
      */
     protected function setFileInfo($pathname)
     {
@@ -74,7 +73,7 @@ class LockHandler implements LockHandlerInterface
     /**
      * @access      protected
      * @param       LockInterface $lockObject lock object
-     * @return      File
+     * @return      FileInterface|FileInfoInterface|\SplFileInfo
      * @throws Exception\FileException
      */
     protected function getLockFile(LockInterface $lockObject)

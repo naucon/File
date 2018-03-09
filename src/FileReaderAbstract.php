@@ -225,7 +225,6 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
     /**
      * set first line as current line
      *
-     * @return      void
      * @see         FileReader::rewind()
      */
     public function first()
@@ -236,7 +235,7 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
     /**
      * return current line
      *
-     * @return      mixed            current item
+     * @return      string|array            current item
      */
     public function current()
     {
@@ -254,7 +253,7 @@ abstract class FileReaderAbstract extends FileAbstract implements FileReaderInte
     /**
      * return index of the current line
      *
-     * @return      mixed            index of current line
+     * @return      int            index of current line
      */
     public function key()
     {

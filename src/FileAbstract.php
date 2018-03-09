@@ -115,7 +115,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * return a instance of FileInterface of the parent directory or null
      *
-     * @return      FileInterface|\SplFileInfo
+     * @return      FileInterface|FileInfoInterface|\SplFileInfo
      */
     public function getParent()
     {
@@ -466,14 +466,14 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * move file to a given directory
      *
-     * @param       FileInterface|string        $pathname
+     * @param       \SplFileInfo|string        $pathname
      * @return      bool
      * @throws      FileException
      */
     public function move($pathname)
     {
         if (!empty($pathname)) {
-            if ($pathname instanceof FileInterface) {
+            if ($pathname instanceof \SplFileInfo) {
                 $targetFile = $pathname;
             } else {
                 $targetFile = new File($pathname);
@@ -501,14 +501,14 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * copy file to a given directory
      *
-     * @param       FileInterface|string        $pathname
+     * @param       \SplFileInfo|string        $pathname
      * @return      bool
      * @throws      FileException
      */
     public function copy($pathname)
     {
         if (!empty($pathname)) {
-            if ($pathname instanceof FileInterface) {
+            if ($pathname instanceof \SplFileInfo) {
                 $targetFile = $pathname;
             } else {
                 $targetFile = new File($pathname);
@@ -591,7 +591,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * return user group name of the file or directory
      *
-     * @return      string         user group name of file group
+     * @return      string|bool|null         user group name of file group
      */
     public function getGroupName()
     {
@@ -606,7 +606,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * return permission of file or directory
      *
-     * @return      int         file permission
+     * @return      string         file permission
      */
     public function getPermission()
     {
@@ -614,7 +614,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     }
 
     /**
-     * @param       mixed       $userGroup      user group name or id
+     * @param       string|int       $userGroup      user group name or id
      * @return      bool
      * @throws      FileException
      */
@@ -635,7 +635,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * change owner
      *
-     * @param       mixed       $user       user name or id
+     * @param       string|int       $user       user name or id
      * @return      bool
      * @throws      FileException
      */
@@ -656,7 +656,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * change permission
      *
-     * @param       int     $fileMode       file permission, default permission is 0777
+     * @param       int|string     $fileMode       file permission, default permission is 0777
      * @return      bool
      * @throws      FileException
      */
@@ -715,8 +715,6 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
 
     /**
      * clear file status cache
-     *
-     * @return      void
      */
     public function flush()
     {
@@ -733,11 +731,11 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
         $filePath = $this->getPathname();
         $size = -1;
         $isWin = (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN');
-        $execWorks = (function_exists('exec') && !ini_get('safe_mode') && @exec('echo EXEC') == 'EXEC');
+        $execWorks = (function_exists('exec') && !ini_get('safe_mode') && exec('echo EXEC') == 'EXEC');
         if ($isWin) {
             if ($execWorks) {
                 $cmd = "for %F in (\"$filePath\") do @echo %~zF";
-                @exec($cmd, $output);
+                exec($cmd, $output);
                 if (is_array($output)) {
                     $result = trim(implode("\n", $output));
                     if (ctype_digit($result)) {
@@ -769,7 +767,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * returns files and directories
      *
-     * @return      \Iterator
+     * @return      \FilesystemIterator
      */
     public function listAll()
     {
@@ -781,13 +779,14 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     /**
      * returns files
      *
-     * @return      \Iterator
+     * @return      \FilesystemIterator|FileFilterType
      * @throws Exception\FileFilterException
      */
     public function listFiles()
     {
-        $iterator = new FileFilterType(new \FilesystemIterator($this->getAbsolutePath()), 'file');
-        $iterator->setInfoClass(get_class($this));
+        $innerIterator = new \FilesystemIterator($this->getAbsolutePath());
+        $innerIterator->setInfoClass(get_class($this));
+        $iterator = new FileFilterType($innerIterator, 'file');
         return $iterator;
     }
 }

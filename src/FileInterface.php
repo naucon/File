@@ -42,7 +42,7 @@ interface FileInterface
     /**
      * return a instance of FileInterface of the parent directory or null
      *
-     * @return      File
+     * @return      FileInterface|\SplFileInfo
      */
     public function getParent();
 
@@ -187,14 +187,14 @@ interface FileInterface
     /**
      * return user group name of the file or directory
      *
-     * @return      string         user group name of file group
+     * @return      string|bool|null         user group name of file group
      */
     public function getGroupName();
 
     /**
      * return permission of file or directory
      *
-     * @return      int         file permission
+     * @return      string         file permission
      */
     public function getPermission();
 
@@ -222,8 +222,6 @@ interface FileInterface
 
     /**
      * clear file status cache
-     *
-     * @return      void
      */
     public function flush();
 
