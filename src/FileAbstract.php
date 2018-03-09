@@ -79,7 +79,7 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
         if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
             return parent::getExtension();
         } else {
-            return pathinfo($this->getAbsolutePath(), PATHINFO_EXTENSION);
+            return ltrim(pathinfo($this->getAbsolutePath(), PATHINFO_EXTENSION), '.');
         }
     }
 
