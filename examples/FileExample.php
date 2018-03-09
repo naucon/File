@@ -1,4 +1,6 @@
 <?php
+require realpath(__DIR__ . '/../') . '/vendor/autoload.php';
+
 use Naucon\File\File;
 
 $examplePath = __DIR__ . '/example.txt';

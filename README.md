@@ -365,6 +365,17 @@ Example:
     $lockObject2->unlock(); // delete lock file "~foo.lock" again
 
 
+## Example
+
+Start the build-in webserver to see the examples in action:
+
+    cd examples
+    php -S 127.0.0.1:3000
+
+open url in browser
+
+    http://127.0.0.1:3000/index.html
+
 
 ## License
 

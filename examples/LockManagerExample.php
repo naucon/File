@@ -1,4 +1,6 @@
 <?php
+require realpath(__DIR__ . '/../') . '/vendor/autoload.php';
+
 $lockPath = __DIR__ . '/lock/';
 
 use Naucon\File\Lock;

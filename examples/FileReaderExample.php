@@ -1,4 +1,6 @@
 <?php
+require realpath(__DIR__ . '/../') . '/vendor/autoload.php';
+
 $filePath = __DIR__ . '/example_read.txt';
 
 use Naucon\File\FileReader;
