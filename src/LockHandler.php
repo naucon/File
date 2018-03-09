@@ -73,7 +73,7 @@ class LockHandler implements LockHandlerInterface
     /**
      * @access      protected
      * @param       LockInterface $lockObject lock object
-     * @return      FileInterface|FileInfoInterface|\SplFileInfo
+     * @return      File
      * @throws Exception\FileException
      */
     protected function getLockFile(LockInterface $lockObject)
