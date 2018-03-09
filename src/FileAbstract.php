@@ -68,6 +68,22 @@ abstract class FileAbstract extends \SplFileInfo implements FileInterface, FileI
     }
 
     /**
+     * return file extension. method was implemented as of version 5.3.6,
+     * we will therefore check, which version we got and extract the extension
+     * on our own otherwise
+     *
+     * @return      string
+     */
+    public function getExtension()
+    {
+        if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
+            return parent::getExtension();
+        } else {
+            return pathinfo($this->getAbsolutePath(), PATHINFO_EXTENSION);
+        }
+    }
+
+    /**
      * return if file path is absolute
      *
      * @return      bool
